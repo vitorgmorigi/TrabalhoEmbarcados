@@ -1,6 +1,7 @@
 const int pinLight = A0;
-const int pinLed   = 7;
+const int pinLed  = 7;
 int thresholdvalue = 400;
+int nivelLed = 0;
 
 void setup() {
 
@@ -16,11 +17,18 @@ void loop() {
     // Turn the LED on if the sensor value is below the threshold.
     if(sensorValue < thresholdvalue)
     {
-        digitalWrite(pinLed, HIGH);
+        valor+=10;
+        analogWrite(pinLed, valor);
+        delay(200);
     }
     else
     {
-        digitalWrite(pinLed, LOW);
+      if (valor != 0){
+        valor-=10;
+        analogWrite(pinLed, valor);
+        delay(200);
+      }
+        
     }
     
 }
